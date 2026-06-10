@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# Block system & dev files
+Disallow: /cgi-bin/
+Disallow: /.vscode/
+Disallow: /*.log$
+Disallow: /.git/
+Disallow: /.env
+
+# Block tracking & duplicate URLs
+Disallow: /*?*
+
+# Allow essential assets
+Allow: /css/
+Allow: /js/
+Allow: /images/
+
+# Sitemap
+Sitemap: https://chiragtour.co.in/sitemap.xml
