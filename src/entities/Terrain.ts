@@ -117,7 +117,26 @@ export class Terrain {
     this.graphics.lineTo(this.segments[this.segments.length - 1].x, 3000);
     this.graphics.closePath();
     
+    // Dirt fill (Rich brown soil)
+    this.graphics.fillStyle(0x4a2e1b, 1);
     this.graphics.fillPath();
+
+    // Grass outline (Bright green)
+    this.graphics.beginPath();
+    this.graphics.moveTo(this.segments[0].x, this.segments[0].y);
+    for (let i = 0; i < this.segments.length; i++) {
+      this.graphics.lineTo(this.segments[i].x, this.segments[i].y);
+    }
+    this.graphics.lineStyle(16, 0x55cc33, 1); // Thick bright grass
+    this.graphics.strokePath();
+
+    // Secondary inner grass line (Darker green for depth)
+    this.graphics.beginPath();
+    this.graphics.moveTo(this.segments[0].x, this.segments[0].y + 6);
+    for (let i = 0; i < this.segments.length; i++) {
+      this.graphics.lineTo(this.segments[i].x, this.segments[i].y + 6);
+    }
+    this.graphics.lineStyle(8, 0x3d9921, 1); 
     this.graphics.strokePath();
   }
 

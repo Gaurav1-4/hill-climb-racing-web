@@ -29,6 +29,7 @@ export class Vehicle {
     });
     this.chassis.setScale(0.15); // Original is 1024x1024 -> ~154x154
     this.chassis.setDepth(10); // Bring chassis to front
+    this.chassis.setFlipX(true); // Flip the image horizontally so it faces right
 
     // Create Wheels
     const wheelOptions: Phaser.Types.Physics.Matter.MatterBodyConfig = {
