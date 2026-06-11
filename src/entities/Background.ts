@@ -1,11 +1,9 @@
 import Phaser from 'phaser';
 
 export class Background {
-  private scene: Phaser.Scene;
   private bgImage!: Phaser.GameObjects.TileSprite;
 
   constructor(scene: Phaser.Scene) {
-    this.scene = scene;
     const width = scene.scale.width;
     const height = scene.scale.height;
 
