@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui, viewport-fit=cover" />
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Hill Climb Racing Clone</title>
     <style>
       body {
@@ -10,7 +13,10 @@
         padding: 0;
         background-color: #000;
         overflow: hidden;
-        touch-action: none;
+        touch-action: none; /* Prevents pull-to-refresh on mobile */
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
       }
       #app {
         width: 100vw;
@@ -22,9 +28,47 @@
       canvas {
         display: block;
       }
+      /* Orientation Overlay */
+      #orientation-overlay {
+        display: none;
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background-color: #000000;
+        color: #ffffff;
+        z-index: 9999;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        font-family: Arial, sans-serif;
+      }
+      #orientation-overlay img {
+        width: 100px;
+        margin-bottom: 20px;
+        animation: rotatePhone 2s infinite ease-in-out;
+      }
+      @keyframes rotatePhone {
+        0% { transform: rotate(0deg); }
+        50% { transform: rotate(-90deg); }
+        100% { transform: rotate(0deg); }
+      }
+      /* Show overlay when in portrait mode on mobile screens */
+      @media screen and (min-width: 320px) and (max-width: 767px) and (orientation: portrait) {
+        #orientation-overlay {
+          display: flex;
+        }
+        #app {
+          display: none;
+        }
+      }
     </style>
   </head>
   <body>
+    <div id="orientation-overlay">
+      <div style="font-size: 60px; margin-bottom: 20px;">📱</div>
+      <h2>Please Rotate Your Device</h2>
+      <p>This game is best played in landscape mode.</p>
+    </div>
     <div id="app"></div>
     <script type="module" src="/src/main.ts"></script>
   </body>
